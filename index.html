@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elegant custom digital invitations for weddings, engagements, birthdays and celebrations in Malappuram, Kerala.">
+  <title>InviteAura | Beautifully Invited</title>
+
+  <style>
+    :root {
+      --purple: #8128c8;
+      --purple-dark: #5f159c;
+      --lavender: #ead7fb;
+      --ink: #24152d;
+      --muted: #625568;
+      --gold: #c89a2c;
+      --white: #ffffff;
+      --soft: #fcf5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: white;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 5%;
+      border-bottom: 1px solid #f2e8f8;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      color: var(--purple);
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .navlinks a {
+      color: #55465f;
+      font-weight: 600;
+    }
+
+    .navlinks a:hover {
+      color: var(--purple);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 2px solid var(--purple);
+      padding: 15px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--purple);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: var(--purple-dark);
+    }
+
+    .button-outline {
+      color: var(--purple);
+      background: white;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 22px 90px;
+      background: radial-gradient(
+        ellipse at center,
+        #fffaff 0%,
+        #f9edff 55%,
+        #f2e3fb 100%
+      );
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 12px 22px;
+      background: var(--lavender);
+      color: #6420a0;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: auto;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      font-weight: 850;
+    }
+
+    h1 span {
+      color: var(--purple);
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 34px auto 0;
+      color: #574a5e;
+      font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 44px;
+    }
+
+    .invitation-preview {
+      width: min(100%, 470px);
+      margin: 75px auto 0;
+      padding: 70px 28px 55px;
+      min-height: 400px;
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ffffff, #faeeff);
+      box-shadow: 0 24px 70px rgba(93, 36, 123, 0.16);
+    }
+
+    .invitation-preview::before,
+    .invitation-preview::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #e2c4f7;
+      border-radius: 50%;
+    }
+
+    .invitation-preview::before {
+      top: -105px;
+      left: -100px;
+    }
+
+    .invitation-preview::after {
+      bottom: -150px;
+      right: -100px;
+    }
+
+    .invite-label {
+      color: var(--gold);
+      letter-spacing: 5px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .invitation-preview h2 {
+      font-family: Georgia, serif;
+      font-size: 3.5rem;
+      margin: 30px 0 12px;
+    }
+
+    .invitation-preview p {
+      color: #75647e;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin: 8px auto;
+      max-width: 300px;
+    }
+
+    .content-section {
+      padding: 80px 22px;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #f0e3f8;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 34px rgba(68, 27, 92, 0.06);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin: 15px 0;
+    }
+
+    .small-note {
+      font-size: 0.9rem;
+      color: #75677c;
+    }
+
+    .design-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .design-art {
+      min-height: 190px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+    }
+
+    .design-art span {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+    }
+
+    .design-art small {
+      display: block;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      font-weight: 750;
+    }
+
+    .art-wedding {
+      background: linear-gradient(140deg, #fff4e7, #f4d8df);
+      color: #6b304d;
+    }
+
+    .art-floral {
+      background: linear-gradient(140deg, #f1f9e9, #d7e8d2);
+      color: #345d42;
+    }
+
+    .art-modern {
+      background: linear-gradient(140deg, #f3eaff, #dcd2fb);
+      color: #53248b;
+    }
+
+    .design-details {
+      padding: 24px;
+    }
+
+    .design-details h3 {
+      margin-bottom: 10px;
+    }
+
+    .design-details p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .steps {
+      max-width: 920px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lavender);
+      color: var(--purple-dark);
+      font-weight: 850;
+      font-size: 1.2rem;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      text-align: center;
+      background: #2b1735;
+      color: white;
+      padding: 75px 22px;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      color: #e1d3e8;
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 auto 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #75677c;
+      background: white;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        min-height: 80px;
+        padding: 16px 20px;
+      }
+
+      .brand {
+        font-size: 1.8rem;
+      }
+
+      .navlinks {
+        display: none;
+      }
+
+      .topbar .button {
+        padding: 13px 22px;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      h1 {
+        letter-spacing: -1.8px;
+      }
+
+      .hero-copy {
+        line-height: 1.65;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        max-width: 470px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .invitation-preview {
+        margin-top: 58px;
+        padding-top: 60px;
+      }
+
+      .button {
+        padding: 14px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="#home">InviteAura</a>
+
+    <nav class="navlinks">
+      <a href="#packages">Packages</a>
+      <a href="#designs">Designs</a>
+      <a href="#how-it-works">How It Works</a>
+    </nav>
+
+    <a
+      class="button button-primary"
+      href="https://wa.me/919876543210?text=Hi%20InviteAura%2C%20I%27m%20interested%20in%20a%20digital%20invitation."
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp
+    </a>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="eyebrow">
+        CUSTOM DIGITAL INVITATIONS · MALAPPURAM
+      </div>
+
+      <h1>
+        Your special moments,<br>
+        <span>beautifully invited.</span>
+      </h1>
+
+      <p class="hero-copy">
+        Elegant digital invitations for weddings, engagements,
+        birthdays and every celebration. Personalized in Malayalam,
+        English or both — ready to share on WhatsApp.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="#packages">
+          View Packages
+        </a>
+
+        <a class="button button-outline" href="#designs">
+          Explore Designs
+        </a>
+      </div>
+
+      <article class="invitation-preview">
+        <div class="invite-label">YOU ARE INVITED</div>
+
+        <h2>Wedding</h2>
+
+        <p>Two hearts, one beautiful beginning.</p>
+        <p>Saturday · 6:30 PM</p>
+        <p>Malappuram, Kerala</p>
+
+        <p style="margin-top:24px;font-family:Georgia,serif;font-style:italic;">
+          Together with our families
+        </p>
+      </article>
+    </section>
+
+    <section class="content-section" id="packages">
+      <div class="section-heading">
+        <h2>Simple, Lovely Packages</h2>
+        <p>
+          Thoughtfully designed invitations for your special day,
+          with options to suit different styles and budgets.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-icon">💌</div>
+          <h3>Essential</h3>
+
+          <p>
+            A clean, elegant digital invitation with your event
+            details and a personalized design.
+          </p>
+
+          <div class="price">₹299</div>
+          <p class="small-note">One invitation design · Digital delivery</p>
+
+          <a
+            class="button button-outline"
+            href="https://wa.me/919876543210?text=Hi%20InviteAura%2C%20I%27d%20like%20the%20Essential%20package."
+            target="_blank"
+            rel="noopener"
+          >
+            Choose Essential
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">✨</div>
+          <h3>Signature</h3>
+
+          <p>
+            A personalized design with refined details, color choices
+            and bilingual text if needed.
+          </p>
+
+          <div class="price">₹699</div>
+          <p class="small-note">Custom styling · Malayalam / English</p>
+
+          <a
+            class="button button-primary"
+            href="https://wa.me/919876543210?text=Hi%20InviteAura%2C%20I%27d%20like%20the%20Signature%20package."
+            target="_blank"
+            rel="noopener"
+          >
+            Choose Signature
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌸</div>
+          <h3>Premium</h3>
+
+          <p>
+            A distinctive invitation experience for customers who
+            want extra customization and detail.
+          </p>
+
+          <div class="price">₹1,499</div>
+          <p class="small-note">Premium customization · Within ₹1,500</p>
+
+          <a
+            class="button button-outline"
+            href="https://wa.me/919876543210?text=Hi%20InviteAura%2C%20I%27d%20like%20the%20Premium%20package."
+            target="_blank"
+            rel="noopener"
+          >
+            Choose Premium
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="content-section" id="designs" style="background:#fff;">
+      <div class="section-heading">
+        <h2>Find Your Invitation Style</h2>
+        <p>
+          Choose a look that feels like you. Every design can be
+          personalized with your names, date, venue and message.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card design-card">
+          <div class="design-art art-wedding">
+            <div>
+              <small>YOU ARE INVITED</small>
+              <span>Our Wedding</span>
+            </div>
+          </div>
+
+          <div class="design-details">
+            <h3>Classic Romance</h3>
+            <p>
+              Soft blush tones and timeless elegance for weddings
+              and engagements.
+            </p>
+          </div>
+        </article>
+
+        <article class="card design-card">
+          <div class="design-art art-floral">
+            <div>
+              <small>A BEAUTIFUL DAY</small>
+              <span>Floral Garden</span>
+            </div>
+          </div>
+
+          <div class="design-details">
+            <h3>Floral Garden</h3>
+            <p>
+              Fresh botanical colors for intimate celebrations
+              and family events.
+            </p>
+          </div>
+        </article>
+
+        <article class="card design-card">
+          <div class="design-art art-modern">
+            <div>
+              <small>LET'S CELEBRATE</small>
+              <span>Modern Minimal</span>
+            </div>
+          </div>
+
+          <div class="design-details">
+            <h3>Modern Minimal</h3>
+            <p>
+              Clean typography and a contemporary look for any occasion.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="content-section" id="how-it-works">
+      <div class="section-heading">
+        <h2>Made Easy, From Idea to Invite</h2>
+        <p>
+          Share a few details with us and we'll help turn your
+          occasion into a beautiful digital invitation.
+        </p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Share Your Details</h3>
+          <p>
+            Send the event type, names, date, time, venue
+            and preferred language.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Choose Your Design</h3>
+          <p>
+            Tell us your favorite style and colors. We'll prepare
+            a personalized design.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Share the Joy</h3>
+          <p>
+            Receive your digital invitation and share it with
+            family and friends.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Let's Make It Memorable.</h2>
+
+      <p>
+        Have a celebration coming up? Message InviteAura to discuss
+        your event, design preferences and package.
+      </p>
+
+      <a
+        class="button button-primary"
+        href="https://wa.me/919876543210?text=Hi%20InviteAura%2C%20I%27d%20like%20to%20create%20a%20digital%20invitation."
+        target="_blank"
+        rel="noopener"
+      >
+        Chat on WhatsApp
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>InviteAura</strong> · Custom Digital Invitations · Malappuram, Kerala
+    <br>
+    Designed to make your special moments beautifully invited.
+  </footer>
+
+</body>
+          </html>
